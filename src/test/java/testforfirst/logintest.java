@@ -1,5 +1,7 @@
 package testforfirst;
 
+import common.login_war_test;
+
 public class logintest {
 
 	public static void main(String[] args) {
