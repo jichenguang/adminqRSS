@@ -16,10 +16,14 @@ public class login_war_test {
 
 
            public static   String click(String username, String password) {
-																					
+										
+        	   
+        	   				String url = "http://www.700store.com/login";
+        	   				
+        	   				
 					        WebDriver Driver = new FirefoxDriver();
 					        Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-					        Driver.get("http://www.700store.com/login");
+					        Driver.get(url);
 							
 
 					//输入用户名
@@ -35,31 +39,22 @@ public class login_war_test {
 					        Driver.switchTo().defaultContent();
 					        try {
 
-					    //不停的检测，一旦当前页面URL不是登录页面URL，就说明浏览器已经进行了跳转
+				    //不停的检测，一旦当前页面URL不是登录页面URL，就说明浏览器已经进行了跳转
 					            while (true) {
 					                Thread.sleep(500);
-					                if (!Driver.getCurrentUrl().startsWith("http://www.700store.com/login")) {
+					                if (!Driver.getCurrentUrl().startsWith(url)) {
 					                    break;
 					                }
 					            }
 					        } catch (InterruptedException e) {
 					            e.printStackTrace();
 					        }
-					      //获取cookie，上面一跳出循环我认为就登录成功了，当然上面的判断不太严格，可以再进行修改
-					        Set<Cookie> cookies = Driver.manage().getCookies();
-					        String cookieStr = "";
-					        for (Cookie cookie : cookies) {
-					            cookieStr += cookie.getName() + "=" + cookie.getValue() + "; ";
-					        }
-					        
-					        System.out.print(cookieStr);
-					        
 					        
 					        
 					        
 					//退出，关闭浏览器
 					        Driver.quit();
-					        return cookieStr;
+					        return username;
 					    
 							
 
