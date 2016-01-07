@@ -13,17 +13,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
-public class login_war_test { 
+public class Login_test { 
 	
-
-
+						
+	static WebDriver Driver = new FirefoxDriver();
+	static String url = "http://www.700store.com/login";
+	
+	
            public static   String click(String username, String password) throws InterruptedException {
-										
-        	   
-        	   				String url = "http://www.700store.com/login";
-        	   				
-        	   				
-					        WebDriver Driver = new FirefoxDriver();
+	
+					        
 					        Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 					        Driver.get(url);
 							
@@ -38,24 +37,33 @@ public class login_war_test {
 
 					//点击登录按钮
 					        Driver.findElement(By.id("btnLogin")).click();
+					        
+					//获取Title,判断是否登陆成功。
 					        Driver.switchTo().defaultContent();
-					        (new WebDriverWait(Driver, 10)).until(new ExpectedCondition<Boolean>() {
-								public Boolean apply(WebDriver Driver2) {
-									return Driver2.getTitle().toLowerCase().indexOf("首页") != -1;
-								}
-							});
+//					        (new WebDriverWait(Driver, 10)).until(new ExpectedCondition<Boolean>() {
+//								public Boolean apply(WebDriver Driver2) {
+//									return Driver2.getTitle().toLowerCase().indexOf("首页") != -1;
+//								}
+//							});
 					        
+					        assertTrue("首页 - 700Bike官方商城",Driver.getTitle()); 
 					        
+					 //获取页面HTML信息。
 							String responseBody = Driver.getPageSource();
 							System.out.println("Response : " + responseBody);
 							
 					        
 					        
 					//退出，关闭浏览器
-					        Driver.quit();
+//					        Driver.quit();
 					        return responseBody;
 					    
 							
 
-							} 
+							}
+
+		private static void assertTrue(String string, String title) {
+			// TODO Auto-generated method stub
+			
+		} 
 }

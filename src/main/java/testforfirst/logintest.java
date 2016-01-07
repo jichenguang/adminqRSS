@@ -1,6 +1,7 @@
 package testforfirst;
 
-import common.login_war_test;
+import common.AddCart_test;
+import common.Login_test;
 
 public class logintest {
 
@@ -12,7 +13,8 @@ public class logintest {
 		
 		
 		try {
-			login_war_test.click("18611360619", "mljicj00");
+			Login_test.click("18611360619", "mljicj00");
+			AddCart_test.addCart();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
