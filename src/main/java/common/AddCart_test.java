@@ -29,13 +29,7 @@ public class AddCart_test {
 		
 	        
 	//获取Title,判断是否登陆成功。
-			Driver_addToCart.switchTo().defaultContent();
-//	        (new WebDriverWait(Driver, 10)).until(new ExpectedCondition<Boolean>() {
-//				public Boolean apply(WebDriver Driver2) {
-//					return Driver2.getTitle().toLowerCase().indexOf("首页") != -1;
-//				}
-//			});
-	        
+			Driver_addToCart.switchTo().defaultContent();	        
 	        assertTrue("首页 - 700Bike官方商城",Driver_addToCart.getTitle()); 
 	        
 	 //获取页面HTML信息。
