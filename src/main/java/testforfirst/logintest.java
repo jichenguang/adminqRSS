@@ -11,7 +11,12 @@ public class logintest {
 		
 		
 		
-		login_war_test.click("18611360619", "mljicj00");
+		try {
+			login_war_test.click("18611360619", "mljicj00");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

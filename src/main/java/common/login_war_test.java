@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
@@ -15,7 +17,7 @@ public class login_war_test {
 	
 
 
-           public static   String click(String username, String password) {
+           public static   String click(String username, String password) throws InterruptedException {
 										
         	   
         	   				String url = "http://www.700store.com/login";
@@ -37,24 +39,21 @@ public class login_war_test {
 					//点击登录按钮
 					        Driver.findElement(By.id("btnLogin")).click();
 					        Driver.switchTo().defaultContent();
-					        try {
-
-				    //不停的检测，一旦当前页面URL不是登录页面URL，就说明浏览器已经进行了跳转
-					            while (true) {
-					                Thread.sleep(500);
-					                if (!Driver.getCurrentUrl().startsWith(url)) {
-					                    break;
-					                }
-					            }
-					        } catch (InterruptedException e) {
-					            e.printStackTrace();
-					        }
+					        (new WebDriverWait(Driver, 10)).until(new ExpectedCondition<Boolean>() {
+								public Boolean apply(WebDriver Driver2) {
+									return Driver2.getTitle().toLowerCase().indexOf("首页") != -1;
+								}
+							});
 					        
+					        
+							String responseBody = Driver.getPageSource();
+							System.out.println("Response : " + responseBody);
+							
 					        
 					        
 					//退出，关闭浏览器
 					        Driver.quit();
-					        return username;
+					        return responseBody;
 					    
 							
 
