@@ -1,4 +1,4 @@
-package common;
+package Action;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -18,13 +18,13 @@ public class Login_test {
 	
 						
 
-	static WebDriver Driver = new FirefoxDriver();
+	
 	static String url = "http://www.700store.com/login";
 	
 	
-           public static  boolean clickForLogin(String PraUsernamesername, String PraPassword) throws InterruptedException {
+           public static  boolean clickForLogin(String PraUsernamesername, String PraPassword, WebDriver Driver) throws InterruptedException {
 	
-					        
+        	   				Driver.manage().deleteAllCookies();
 					        Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 					        Driver.get(url);
 

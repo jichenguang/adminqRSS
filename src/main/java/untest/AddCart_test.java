@@ -1,4 +1,4 @@
-package common;
+package untest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +12,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.openqa.selenium.Cookie;
 
 
 
@@ -20,10 +21,11 @@ public class AddCart_test {
 	
 
 	 @SuppressWarnings("resource")
-	 		public static void addToCart(String cookie) throws InterruptedException,IllegalStateException, IOException {
+	 		public static void addToCart(String myCookie) throws InterruptedException,IllegalStateException, IOException {
 			
   	   			
 		String url_addToCart = "http://www.700store.com/addtocartaction?ProductRoute=baihua&SkuId=76&OrderQuantity=1";
+
 	
 	//判断“加入购物车”是否成功。
 				HttpClient httpclient = new DefaultHttpClient();
@@ -35,21 +37,20 @@ public class AddCart_test {
 			    try {
 			        /*HttpGet httpget = new HttpGet(url_addToCart);
 			        httpget.addHeader(new BasicHeader("Cookie",cookie));*/
-			        
-			       
+			        		       
 					HttpGet httpget = new HttpGet(url_addToCart);
 					
 					/*@
 					 * 从登录页面获取cookie;
 					 */
-					Header header = new BasicHeader("Cookie",cookie);
+					Header header = new BasicHeader("Cookie",myCookie);
 					httpget.addHeader(header);
-					
-					
-					System.out.println("----------------------------------------");
 			        System.out.println("executing request： " + httpget.getURI());
-					System.out.println("----------------------------------------");
 			        HttpResponse response = null;
+			        
+			        /*@
+			         * 发送这个请求,并获得响应
+			         */
 					try {
 						response = httpclient.execute(httpget);
 					} catch (ClientProtocolException e) {
@@ -61,7 +62,6 @@ public class AddCart_test {
 					}
 					
 			        HttpEntity entity = response.getEntity();
-
 			        System.out.println("----------------------------------------");
 			        System.out.println(response.getStatusLine());
 			        if (entity != null) {
@@ -84,7 +84,7 @@ public class AddCart_test {
 			    	
 			    	//退出，关闭浏览器
 
-			        httpclient.getConnectionManager().shutdown();
+//			        httpclient.getConnectionManager().shutdown();
 //			        return  clientStatusCode;
 
 			    }
