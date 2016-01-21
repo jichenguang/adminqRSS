@@ -6,17 +6,23 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import Action.AddToCart;
+import Action.Login_adminq;
 import Action.Login_test;
 import common.GetCookie;
 import untest.AddCart_test;
 
-public class StartScript {
+
+/*
+ * @后台自动化测试入口
+ */
+public class adminq_StartScript {
 	
 	
 	public static WebDriver Driver = new FirefoxDriver();
-	static String PraUsername = "18611360619";
-	static String PraPassword = "mljicj00";
-	static String MyCookie = null;
+	static String PraUsername = "administrator";
+	static String PraPassword = "111111";
+	static Cookie MyCookie = null;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		
@@ -30,21 +36,21 @@ public class StartScript {
 			/*@
 			 * 登录
 			 */
-			Login_test.clickForLogin(PraUsername, PraPassword, Driver);
+			Login_adminq.clickForLogin(PraUsername, PraPassword, Driver);
 			
-			
-			/*@
+	/*		
+			@
 			 * 获取Cookie，目的是保持用户登录状态
-			 */
-			MyCookie = GetCookie.getCookie(PraUsername, PraPassword, Driver);
+			 
+			MyCookie = GetCookie.getCookie(Driver);
 			
 			
-			/*@
+			@
 			 * 将商品加入购物车
-			 */
+			 
 			AddCart_test.addToCart(MyCookie);
-			/*AddToCart.addToCart(MyCookie, Driver);*/
-			
+			AddToCart.addToCart(MyCookie, Driver);
+			*/
 			
 			
 			/*

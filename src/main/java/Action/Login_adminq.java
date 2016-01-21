@@ -14,35 +14,38 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
-public class Login_test { 
+public class Login_adminq { 
 	
 						
 
 	
-	static String url = "http://www.700store.com/login";
+	static String adminq_url = "http://adminq.700paper.cn/index";
 	
 	
            public static  boolean clickForLogin(String PraUsernamesername, String PraPassword, WebDriver Driver) throws InterruptedException {
 	
         	   				Driver.manage().deleteAllCookies();
 					        Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-					        Driver.get(url);
+					        Driver.get(adminq_url);
 
 					//输入用户名
-					        Driver.findElement(By.id("txtEmail")).clear();
-					        Driver.findElement(By.id("txtEmail")).sendKeys(PraUsernamesername);
+					        Driver.findElement(By.id("txtUserName")).clear();
+					        Driver.findElement(By.id("txtUserName")).sendKeys(PraUsernamesername);
 
 					//输入密码
 					        Driver.findElement(By.id("txtPassword")).clear();
 					        Driver.findElement(By.id("txtPassword")).sendKeys(PraPassword);
 
+					        Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 					//点击登录按钮
+					        
 					        Driver.findElement(By.id("btnLogin")).click();
+
 					        
 					//获取Title,判断是否登陆成功。
 					        
 					        Driver.switchTo().defaultContent();
-					        String content = Driver.findElement(By.id("username")).toString();					        
+					        String content = Driver.findElement(By.xpath(".//*[@id='user-info']/span")).toString();					        
 				try {  
 					 if(PraUsernamesername.equals(content));
 					       System.out.println(content + " is appeard!");  
