@@ -6,11 +6,9 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import Action.AddToCart;
 import Action.Login_adminq;
-import Action.Login_test;
+import Action.NewPro;
 import common.GetCookie;
-import untest.AddCart_test;
 
 
 /*
@@ -33,31 +31,33 @@ public class adminq_StartScript {
 		
 		try {
 			
-			/*@
+			/*
 			 * 登录
 			 */
 			Login_adminq.clickForLogin(PraUsername, PraPassword, Driver);
 			
-	/*		
-			@
+			
+			
+			/* 
 			 * 获取Cookie，目的是保持用户登录状态
+			 */
 			 
 			MyCookie = GetCookie.getCookie(Driver);
 			
 			
-			@
-			 * 将商品加入购物车
+			/*
+			 * 新建一个商品
+			 */
 			 
-			AddCart_test.addToCart(MyCookie);
-			AddToCart.addToCart(MyCookie, Driver);
-			*/
+			NewPro.NewProduct(MyCookie, Driver);
+			
 			
 			
 			/*
 			 * 关闭所有浏览器
 			 */
-	        Thread.sleep(3000);
-	        Driver.quit();  
+/*	        Thread.sleep(3000);
+	        Driver.quit();  */
 			
 			
 			
